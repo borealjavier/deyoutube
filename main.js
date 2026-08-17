@@ -34,6 +34,62 @@
     revealEls.forEach((el) => io.observe(el));
   }
 
+  /* ---------- Experiencia: imagen fija que cambia según el panel visible ---------- */
+  const experienceImgs = document.querySelectorAll("[data-experience-img]");
+  const experiencePanels = document.querySelectorAll("[data-experience-panel]");
+  if (experienceImgs.length && experiencePanels.length && "IntersectionObserver" in window) {
+    const experienceIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = entry.target.getAttribute("data-experience-panel");
+            experienceImgs.forEach((img) => {
+              img.classList.toggle("is-active", img.getAttribute("data-experience-img") === idx);
+            });
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    experiencePanels.forEach((p) => experienceIO.observe(p));
+  }
+
+  /* ---------- Momento: efecto de paralaje suave en la imagen a pantalla completa ---------- */
+  const statementSection = document.querySelector(".statement");
+  const statementImg = statementSection ? statementSection.querySelector(".statement__bg img") : null;
+  if (statementSection && statementImg && !reducedMotion && "IntersectionObserver" in window) {
+    let ticking = false;
+    const updateParallax = () => {
+      const rect = statementSection.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const progress = (vh - rect.top) / (vh + rect.height);
+      const clamped = Math.max(0, Math.min(1, progress));
+      const shift = (clamped - 0.5) * 50;
+      statementImg.style.transform = `translateY(${shift}px)`;
+      ticking = false;
+    };
+    const onScrollParallax = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    };
+    const statementIO = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            updateParallax();
+            window.addEventListener("scroll", onScrollParallax, { passive: true });
+          } else {
+            window.removeEventListener("scroll", onScrollParallax);
+          }
+        });
+      },
+      { threshold: 0 }
+    );
+    statementIO.observe(statementSection);
+  }
+
   /* ---------- Bottom nav + desktop nav: active section highlight ---------- */
   const navLinks = document.querySelectorAll("[data-nav-link]");
   const sections = Array.from(navLinks)

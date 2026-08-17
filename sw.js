@@ -2,7 +2,7 @@
    Objetivo: acelerar visitas repetidas y evitar errores si no hay conexión.
    No implementa un modo offline complejo: solo cachea el "app shell". */
 
-const VERSION = "lela-v1";
+const VERSION = "lela-v2";
 const SHELL_CACHE = `${VERSION}-shell`;
 const RUNTIME_CACHE = `${VERSION}-runtime`;
 
