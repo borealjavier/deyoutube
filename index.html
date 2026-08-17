@@ -1,370 +1,654 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Quincho Brito El Japonés</title>
-    <style>
-    /* Reset básico */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fafafa;
-      color: #4a2c0f;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      background-color: #6f4e37;
-      color: #fff;
-      padding: 25px 15px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgb(111 78 55 / 0.4);
-    }
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-    }
-    /* Galería de imágenes */
-    .gallery {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
-    .gallery img {
-      max-width: 220px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-    /* Contenedor principal */
-    .container {
-      max-width: 900px;
-      background: #fff;
-      margin: 0 auto 40px;
-      padding: 30px 35px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
-    }
-    h2 {
-      color: #a05a2c;
-      font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 25px;
-      text-align: center;
-      letter-spacing: 1px;
-    }
-    /* Diseño tarjetas para sección ¿Qué incluye nuestro quincho? */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 0 10px;
-    }
-    .feature-card {
-      background: #fff;
-      border-radius: 15px;
-      padding: 25px 20px;
-      box-shadow: 0 6px 15px rgb(160 90 44 / 0.15);
-      text-align: center;
-      transition: box-shadow 0.3s ease;
-      cursor: default;
-    }
-    .feature-card:hover {
-      box-shadow: 0 10px 25px rgb(160 90 44 / 0.3);
-    }
-    .feature-icon {
-      font-size: 3.5rem;
-      margin-bottom: 15px;
-      display: inline-block;
-    }
-    .feature-title {
-      font-weight: 700;
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-      color: #6f4e37;
-    }
-    .feature-desc {
-      font-size: 1rem;
-      color: #7a5a3c;
-      line-height: 1.4;
-    }
-    /* Secciones info alquiler y demás */
-    section.info-section {
-      margin-top: 40px;
-    }
-    section.info-section h2 {
-      margin-bottom: 20px;
-    }
-    section.info-section ul {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 25px;
-    }
-    section.info-section ul li {
-      margin-bottom: 12px;
-      padding-left: 30px;
-      position: relative;
-      font-size: 1.05rem;
-      color: #5a3e1b;
-    }
-    section.info-section ul li:before {
-      content: "✔️";
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-size: 1.3rem;
-      line-height: 1;
-    }
-    section.info-section p {
-      font-size: 1.05rem;
-      margin-bottom: 20px;
-      color: #5a3e1b;
-    }
-    .prohibido {
-      color: #d9534f;
-      font-weight: 700;
-      text-align: center;
-      margin: 15px 0;
-      font-size: 1.1rem;
-    }
-    /* Botón WhatsApp flotante */
-    .whatsapp-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      font-weight: 700;
-      padding: 14px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 1.5rem;
-      box-shadow: 0 6px 15px rgb(37 211 102 / 0.7);
-      transition: background-color 0.3s ease;
-      z-index: 1100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .whatsapp-btn:hover {
-      background-color: #1ebe57;
-    }
-    footer {
-      background-color: #6f4e37;
-      color: white;
-      text-align: center;
-      padding: 18px 15px;
-      font-size: 0.9rem;
-      box-shadow: 0 -4px 8px rgb(111 78 55 / 0.4);
-      margin-top: auto;
-    }
-    /* Mapa */
-    .map-container {
-      max-width: 900px;
-      margin: 40px auto 60px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
-    }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-    }
-    .map-info {
-      background: #fff;
-      padding: 20px 30px;
-      text-align: center;
-      font-size: 1.1rem;
-      color: #5a3e1b;
-      font-weight: 600;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
-    }
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .container {
-        padding: 25px 20px;
-        margin: 20px 15px 40px;
-      }
-      .feature-card {
-        padding: 20px 15px;
-      }
-      .feature-icon {
-        font-size: 3rem;
-      }
-      .feature-title {
-        font-size: 1.1rem;
-      }
-      section.info-section ul li {
-        font-size: 1rem;
-      }
-      .whatsapp-btn {
-        font-size: 1.3rem;
-        padding: 12px 18px;
-      }
-      .prohibido {
-        font-size: 1rem;
-      }
-      .map-info {
-        font-size: 1rem;
-        padding: 15px 20px;
-      }
-    }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Lela Eventos | Alquiler de quincho para eventos</title>
+<meta name="description" content="Alquilá Lela Eventos para tu próximo evento: pileta, patio techado, asador y horno pizzero, capacidad máxima para 60 personas. Consultá disponibilidad por WhatsApp." />
+<meta name="theme-color" content="#2E3820" />
+<link rel="canonical" href="https://borealjavier.github.io/deyoutube/" />
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="favicon-16.png" type="image/png" sizes="16x16" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Lela Eventos" />
+<meta name="mobile-web-app-capable" content="yes" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:site_name" content="Lela Eventos" />
+<meta property="og:title" content="Lela Eventos | Alquiler de quincho para eventos" />
+<meta property="og:description" content="Pileta, patio techado, asador y horno pizzero. Capacidad máxima para 60 personas. Consultá disponibilidad por WhatsApp." />
+<meta property="og:url" content="https://borealjavier.github.io/deyoutube/" />
+<meta property="og:image" content="https://borealjavier.github.io/deyoutube/logo-lela-eventos-960.png" />
+<meta property="og:image:width" content="960" />
+<meta property="og:image:height" content="960" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lela Eventos | Alquiler de quincho para eventos" />
+<meta name="twitter:description" content="Pileta, patio techado, asador y horno pizzero. Capacidad máxima para 60 personas. Consultá disponibilidad por WhatsApp." />
+<meta name="twitter:image" content="https://borealjavier.github.io/deyoutube/logo-lela-eventos-960.png" />
+
+<!-- Fuentes: una sola familia web (Fraunces) para títulos; el cuerpo usa la fuente del sistema -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+
+<link rel="preload" as="image" href="logo-lela-eventos-480.png" />
+<link rel="stylesheet" href="styles.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EventVenue",
+  "name": "Lela Eventos",
+  "description": "Quincho para alquiler de eventos con pileta, patio techado y asador. Capacidad máxima para 60 personas.",
+  "url": "https://borealjavier.github.io/deyoutube/",
+  "telephone": "+5493813306964",
+  "image": "https://borealjavier.github.io/deyoutube/logo-lela-eventos-960.png",
+  "sameAs": ["https://www.instagram.com/quinchojapones/"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle 15 N° 539",
+    "addressLocality": "Villa Mariano Moreno",
+    "addressCountry": "AR"
+  }
+}
+</script>
 </head>
 <body>
-    <header>
-      <h1>Quincho Brito El Japonés</h1>
-    </header>
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
 
-    <div class="gallery">
-      <img src="WhatsApp Image 2025-10-08 at 18.01.09.jpeg" alt="Quincho iluminación">
-      <img src="WhatsApp Image 2025-10-08 at 17.59.56.jpeg" alt="Quincho pileta">
-      <img src="WhatsApp Image 2025-10-08 at 17.59.56.jpeg" />
-      <img src="WhatsApp Image 2025-10-08 at 18.10.28.jpeg" alt="Salón techado quincho">
-      <img src="para la web el bar.png" alt="Bar Quincho" />
+<!-- ===================== SPRITE DE ÍCONOS ===================== -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <g id="ic-stroke" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+
+  <symbol id="icon-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 11.5 12 4l8 7.5M6 10v9a1 1 0 0 0 1 1h3v-6h4v6h3a1 1 0 0 0 1-1v-9"/></symbol>
+
+  <symbol id="icon-gallery" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="8.5" cy="9.5" r="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m4.5 16.5 4.5-4.5 3 3 3.5-4 4.5 5"/></symbol>
+
+  <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 11v5.2"/><circle cx="12" cy="8.1" r="1" fill="currentColor" stroke="none"/></symbol>
+
+  <symbol id="icon-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+
+  <symbol id="icon-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m8 12.3 2.6 2.6 5.4-5.8"/></symbol>
+
+  <symbol id="icon-warn" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.6 21.5 20H2.5L12 3.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 9.6v4.4"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/></symbol>
+
+  <symbol id="icon-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 10.5h18"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6.5 15h4"/></symbol>
+
+  <symbol id="icon-cash" viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="19" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M5.5 9v0M18.5 15v0"/></symbol>
+
+  <symbol id="icon-directions" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 12 12 3l9 9M6 10.5V20h5v-5h2v5h5v-9.5"/></symbol>
+
+  <symbol id="icon-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+
+  <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5.5 8 12l7 6.5"/></symbol>
+
+  <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 5.5 16 12l-7 6.5"/></symbol>
+
+  <symbol id="icon-zoom" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="m20 20-4.3-4.3M10.5 8v5M8 10.5h5"/></symbol>
+
+  <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12.02 2C6.5 2 2.03 6.46 2.03 11.98c0 1.98.58 3.82 1.58 5.37L2 22l4.79-1.57a9.96 9.96 0 0 0 5.23 1.47h.01c5.52 0 9.98-4.46 9.98-9.98C22.01 6.46 17.54 2 12.02 2Zm5.86 14.14c-.25.7-1.44 1.35-1.98 1.4-.5.05-1.02.24-3.4-.71-2.88-1.15-4.73-4.06-4.87-4.25-.14-.19-1.16-1.54-1.16-2.94s.73-2.09 .99-2.38c.25-.28.56-.35.74-.35h.53c.17 0 .4-.03.62.47.25.57.85 1.98.92 2.13.07.14.12.31.02.5-.1.19-.15.31-.3.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.28.75 1.24 1.62 2.01 1.11.99 2.04 1.3 2.33 1.44.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.28.38-.24.63-.14.25.1 1.63.77 1.91.91.28.14.46.21.53.33.07.12.07.68-.18 1.19Z"/></symbol>
+
+  <symbol id="icon-download" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 16v3a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5v-3"/></symbol>
+
+  <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M15.5 6.2a3 3 0 0 1 0 5.7M17.5 19c0-2.4-1.6-4.3-3.8-4.9"/></symbol>
+
+  <symbol id="icon-utensils" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 3v7a1.6 1.6 0 0 0 3.2 0V3M8.6 10v11M17 3c-1.4.5-2.2 2-2.2 4.3 0 2 1 3.4 2.2 3.7V21"/></symbol>
+
+  <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 7.5V12l3.3 2"/></symbol>
+
+  <symbol id="icon-shower" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 9V6.5A3.5 3.5 0 0 1 12.5 5M4.5 9h15M7 13v.01M11 13v.01M15 13v.01M17 13v.01M8 17v.01M12 17v.01M16 17v.01M9 21v.01M15 21v.01"/></symbol>
+
+  <symbol id="icon-flame" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 3c1 3-3 4.2-3 7.8a3 3 0 0 0 6 0c0-1-.4-1.8-1-2.4.7 2 .2 3-1 3.6M8 14a4 4 0 1 0 8 0c0-1.6-.7-2.7-1.6-3.7"/></symbol>
+
+  <symbol id="icon-snow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.5v19M4 7l16 10M20 7 4 17M6.5 4.5l1.2 3.3-3.3 1.2M17.5 4.5l-1.2 3.3 3.3 1.2M6.5 19.5l1.2-3.3-3.3-1.2M17.5 19.5l-1.2-3.3 3.3-1.2"/></symbol>
+
+  <symbol id="icon-roof" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 9.5 12 4l9 5.5M5 9v10h14V9M9.5 19v-5h5v5"/></symbol>
+
+  <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 2.8v2.4M12 18.8v2.4M4.2 12H1.8M22.2 12h-2.4M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></symbol>
+
+  <symbol id="icon-waves" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M2 9c1.5-1.6 3.5-1.6 5 0s3.5 1.6 5 0 3.5-1.6 5 0 3.5 1.6 5 0M2 15c1.5-1.6 3.5-1.6 5 0s3.5 1.6 5 0 3.5-1.6 5 0 3.5 1.6 5 0"/></symbol>
+
+  <symbol id="icon-music" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 17.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm0 0V5.8L19 4v10M19 16.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/></symbol>
+
+  <symbol id="icon-chairs" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 4v9h11V4M4 9h11M6.5 13v6.5M13 13v6.5M17 10.5h3v9M17 15h3"/></symbol>
+
+  <symbol id="icon-fan" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M12 10.5c0-3 1.5-6 4-6.5-1.5 2-.7 5-.2 6.2M13.4 12.7c2.6 1.3 5.9.9 7.6-1.1-2.4-.6-4.7 1-5.9 2.1M10.6 12.7c-2.6 1.3-5.9.9-7.6-1.1 2.4-.6 4.7 1 5.9 2.1M12 13.5c0 3-1.5 6-4 6.5 1.5-2 .7-5 .2-6.2"/></symbol>
+
+  <symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor"/></symbol>
+
+  <symbol id="icon-grass" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" d="M4 20V13c0-2.2 1.3-4 3-4M4 20V15c0-3 1.6-5.4 3.6-5.4M9 20V11c0-2.6 1.6-4.7 3.6-4.7M9 20v-6c0-2.9 1.8-5.2 4-5.2M15 20v-7c0-2.2 1.3-4 3-4M15 20v-5c0-3 1.6-5.4 3.6-5.4M20 20H4"/></symbol>
+</svg>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <a class="brand" href="#inicio" aria-label="Lela Eventos — Inicio">
+      <span class="brand__mark" aria-hidden="true">LE</span>
+      <span class="brand__label" aria-hidden="true">Lela Eventos</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#inicio" data-nav-link>Inicio</a></li>
+        <li><a href="#quincho" data-nav-link>El Quincho</a></li>
+        <li><a href="#galeria" data-nav-link>Galería</a></li>
+        <li><a href="#servicios" data-nav-link>Servicios</a></li>
+        <li><a href="#informacion" data-nav-link>Información</a></li>
+        <li><a href="#ubicacion" data-nav-link>Ubicación</a></li>
+        <li><a href="#contacto" data-nav-link>Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn--ghost btn--sm install-btn" aria-label="Instalar la aplicación">
+        <svg><use href="#icon-download"/></svg> <span class="btn-label">Instalar</span>
+      </button>
+      <a class="header-ig" href="https://instagram.com/quinchojapones" target="_blank" rel="noopener" aria-label="Seguinos en Instagram: @quinchojapones">
+        <svg width="20" height="20"><use href="#icon-instagram"/></svg>
+      </a>
+      <a class="btn btn--accent header-cta" href="https://wa.me/5493813306964?text=Hola!%20Quiero%20consultar%20disponibilidad%20para%20alquilar%20el%20quincho." target="_blank" rel="noopener">
+        <svg><use href="#icon-whatsapp"/></svg> Consultar
+      </a>
+      <a class="header-wa" href="https://wa.me/5493813306964?text=Hola!%20Quiero%20consultar%20disponibilidad%20para%20alquilar%20el%20quincho." target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
+        <svg width="20" height="20"><use href="#icon-whatsapp"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="inicio">
+    <div class="hero__media">
+      <picture>
+        <source type="image/webp" srcset="logo-lela-eventos-320.webp 320w, logo-lela-eventos-480.webp 480w, logo-lela-eventos-640.webp 640w, logo-lela-eventos-960.webp 960w" sizes="(min-width:960px) 26vw, (min-width:640px) 40vw, 56vw" />
+        <img
+          class="hero__logo"
+          src="logo-lela-eventos-480.png"
+          srcset="logo-lela-eventos-320.png 320w, logo-lela-eventos-480.png 480w, logo-lela-eventos-640.png 640w, logo-lela-eventos-960.png 960w"
+          sizes="(min-width:960px) 26vw, (min-width:640px) 40vw, 56vw"
+          width="1254" height="1254"
+          alt="Lela Eventos — tu mejor momento, en el mejor lugar"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
     </div>
 
+    <div class="hero__content">
+      <div class="container">
+        <span class="hero__eyebrow">Alquiler de quincho para eventos</span>
+        <h1>Lela Eventos</h1>
+        <p class="hero__lead">Pileta, patio techado y asador en un espacio propio para tu cumpleaños, reunión o celebración con amigos y familia.</p>
+
+        <div class="hero__ctas">
+          <a class="btn btn--accent" href="https://wa.me/5493813306964?text=Hola!%20Quiero%20consultar%20disponibilidad%20para%20alquilar%20el%20quincho." target="_blank" rel="noopener">
+            <svg><use href="#icon-whatsapp"/></svg> Consultar disponibilidad
+          </a>
+          <a class="btn btn--ghost" href="#galeria">
+            <svg><use href="#icon-gallery"/></svg> Ver el quincho
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="stat-chip"><svg><use href="#icon-users"/></svg><span class="stat-chip__label">60 personas<br>máx.</span></div>
+          <div class="stat-chip"><svg><use href="#icon-clock"/></svg><span class="stat-chip__label">6 horas de<br>alquiler</span></div>
+          <div class="stat-chip"><svg><use href="#icon-waves"/></svg><span class="stat-chip__label">Pileta<br>propia</span></div>
+          <div class="stat-chip"><svg><use href="#icon-flame"/></svg><span class="stat-chip__label">Asador y horno<br>pizzero</span></div>
+        </div>
+      </div>
+    </div>
+
+    <span class="scroll-cue" aria-hidden="true">Descubrí más</span>
+  </section>
+
+  <!-- ===================== EL QUINCHO ===================== -->
+  <section class="section" id="quincho">
     <div class="container">
-      <section class="info-section">
-        <h2>¿Qué incluye nuestro quincho?</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">🚿</div>
-            <div class="feature-title">Dos Baños Completos</div>
-            <div class="feature-desc">Baños modernos y limpios para la comodidad de todos tus invitados</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🔥</div>
-            <div class="feature-title">Asador y Horno Pizzero</div>
-            <div class="feature-desc">Asador tradicional y horno pizzero para preparar las mejores comidas</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">❄️</div>
-            <div class="feature-title">Freezer para Bebidas</div>
-            <div class="feature-desc">Freezer disponible para mantener tus bebidas frías</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🏠</div>
-            <div class="feature-title">Patio Techado</div>
-            <div class="feature-desc">Amplio espacio cubierto para disfrutar sin importar el clima</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🌞</div>
-            <div class="feature-title">Patio al Aire Libre</div>
-            <div class="feature-desc">Espacio abierto para actividades al aire libre y relajación</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🏊‍♀️</div>
-            <div class="feature-title">Pileta</div>
-            <div class="feature-desc">Pileta limpia y mantenida para refrescarse y divertirse</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🎵</div>
-            <div class="feature-title">Música y Karaoke</div>
-            <div class="feature-desc">Sistema de sonido y TV para karaoke, ¡diversión garantizada!</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🪑</div>
-            <div class="feature-title">Mobiliario Completo</div>
-            <div class="feature-desc">Mesas, sillas y manteles incluidos, todo listo para usar</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">💨</div>
-            <div class="feature-title">Ventiladores Industriales</div>
-            <div class="feature-desc">Mantenemos el lugar fresco con ventiladores industriales</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">👥</div>
-            <div class="feature-title">Capacidad para 80 Personas Aprox.</div>
-            <div class="feature-desc">Espacio amplio para eventos grandes</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🍽️</div>
-            <div class="feature-title">Servicio de Catering</div>
-            <div class="feature-desc">Consultá por nuestro servicio de catering para eventos con comidas tipo lunch</div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">⏰</div>
-            <div class="feature-title">Extensión de Horas</div>
-            <div class="feature-desc">Consultar por extensión de horas en caso de ser posible</div>
-          </div>
-        </div>
-      </section>
-      <section class="info-section">
-        <h2>Información de Alquiler</h2>
-        <p><strong>5 Horas</strong> - Duración del alquiler</p>
-        <p>Horarios flexibles según disponibilidad</p>
-        <p><strong>Incluye:</strong> Todos los servicios mencionados, mobiliario completo, limpieza previa y mantenimiento de pileta.</p>
-        <ul>
-          <li>Horarios de alquiler: de 13:00 a 18:00 o de 22:00 a 3:00 am.</li>
-          <li>Se debe dejar una seña de $30.000 para reservar el lugar.</li>
-          <li>Se cobra un seguro de $15.000 en caso de daños, que se reintegra una vez finalizado y controlado el evento.</li>
-          <li>El pago total del alquiler debe realizarse una semana antes del evento de la fecha seleccionada.</li>
-          <li>Si se cancela, no se reintegra la seña.</li>
-          <li>Se puede modificar la fecha con al menos dos semanas de anticipación.</li>
-          <li>El lugar se entrega una hora antes para que puedas traer bebidas o acomodar lo que desees.</li>
-          <li class="prohibido">NO ESTÁ PERMITIDO TIRAR PAPELES PICADOS NI HARINAS.</li>
-          <li>Para ver el alquiler en persona, consultar cita previa.</li>
-        </ul>
-      </section>
-      <section class="info-section">
-        <h2>Medios de Pago Aceptados</h2>
-        <ul>
-          <li>💳 Transferencia Bancaria</li>
-          <li>💵 Efectivo</li>
-        </ul>
-      </section>
-      <section class="info-section">
-        <h2>Reservas</h2>
-        <p>Las reservas se realizan por fechas específicas. Consultá disponibilidad por WhatsApp.</p>
-      </section>
-      <section class="info-section">
-        <h2>Horarios</h2>
-        <p>Horarios flexibles de 5 horas consecutivas. Coordinamos según tu preferencia.</p>
-      </section>
-      <section class="info-section">
-        <h2>Condiciones</h2>
-        <p>Se entrega limpio y equipado. Se solicita mantener el orden y cuidado de las instalaciones.</p>
-      </section>
-      <section class="info-section">
-        <h2>Ubicación</h2>
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.1234567890123!2d-58.1234567890123!3d-34.1234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc123456789ab%3A0x123456789abcdef!2sCalle%2015%20539%2C%20Villa%20Mariano%20Moreno!5e0!3m2!1ses!2sar!4v1234567890123"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            title="Ubicación Quincho Brito El Japonés"></iframe>
-        </div>
-        <p class="map-info">Calle 15 N° 539, Villa Mariano Moreno</p>
-      </section>
-      <section class="info-section">
-        <h2>Consultas</h2>
-        <p>Todas las consultas y reservas se gestionan por WhatsApp para una atención rápida y personalizada.</p>
-      </section>
+      <div class="section-head reveal">
+        <span class="eyebrow">El quincho</span>
+        <h2>Conocé el espacio</h2>
+        <p>Instalaciones y comodidades pensadas para que tu evento familiar, cumpleaños o encuentro con amigos se disfrute con tranquilidad.</p>
+      </div>
+
+      <div class="cards-grid reveal-group">
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-shower"/></svg></div>
+          <h3>Dos baños completos</h3>
+          <p>Baños modernos y limpios para la comodidad de tus invitados.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-flame"/></svg></div>
+          <h3>Asador y horno pizzero</h3>
+          <p>Asador tradicional y horno pizzero para preparar las comidas del evento.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-snow"/></svg></div>
+          <h3>Freezer para bebidas</h3>
+          <p>Freezer disponible para mantener las bebidas frías durante todo el evento.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-roof"/></svg></div>
+          <h3>Patio techado</h3>
+          <p>Amplio espacio cubierto para disfrutar sin depender del clima.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-sun"/></svg></div>
+          <h3>Patio al aire libre</h3>
+          <p>Espacio abierto para actividades y momentos al aire libre.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-grass"/></svg></div>
+          <h3>Sector con césped sintético</h3>
+          <p>Área de césped sintético junto a la pileta, ideal para mesas y momentos al aire libre.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-waves"/></svg></div>
+          <h3>Pileta</h3>
+          <p>Pileta mantenida y lista para refrescarse y disfrutar en familia.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-music"/></svg></div>
+          <h3>Música y karaoke</h3>
+          <p>Sistema de sonido y TV para armar tu propio karaoke.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-chairs"/></svg></div>
+          <h3>Mobiliario completo</h3>
+          <p>Mesas, sillas y manteles incluidos, todo listo para usar.</p>
+        </article>
+        <article class="feature-card reveal">
+          <div class="feature-card__icon"><svg><use href="#icon-fan"/></svg></div>
+          <h3>Ventiladores industriales</h3>
+          <p>Ventiladores industriales para mantener fresco el ambiente.</p>
+        </article>
+      </div>
     </div>
+  </section>
 
-    <a href="https://wa.me/5493813306964" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">📱</a>
+  <!-- ===================== GALERÍA ===================== -->
+  <section class="section" id="galeria" style="background:var(--surface-2)">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Galería</span>
+        <h2>Fotos reales del quincho</h2>
+        <p>Así es el espacio: sin puestas en escena, tal como lo vas a encontrar el día de tu evento.</p>
+      </div>
 
-    <footer>
-      <p>© 2024 Quincho Brito El Japonés. Todos los derechos reservados.</p>
-    </footer>
+      <div class="gallery-grid reveal">
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Ampliar foto: Vista amplia del patio techado y la pileta"
+             data-full="vista-amplia-patio-pileta-evento-1080.jpg"
+             data-caption="Vista amplia del patio techado y la pileta con mesas montadas para un evento">
+          <picture>
+            <source type="image/webp" srcset="vista-amplia-patio-pileta-evento-480.webp 480w, vista-amplia-patio-pileta-evento-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1280/960" loading="lazy" decoding="async" width="1280" height="960"
+                 src="vista-amplia-patio-pileta-evento-480.jpg"
+                 srcset="vista-amplia-patio-pileta-evento-480.jpg 480w, vista-amplia-patio-pileta-evento-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Vista amplia del patio techado y la pileta con mesas montadas para un evento" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Mesas del patio techado con mantelería y camino dorado"
+             data-full="mesas-patio-mantel-dorado-768.jpg"
+             data-caption="Mesas del patio techado montadas con mantelería y camino dorado para un evento">
+          <picture>
+            <source type="image/webp" srcset="mesas-patio-mantel-dorado-480.webp 480w, mesas-patio-mantel-dorado-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:900/1600" loading="lazy" decoding="async" width="900" height="1600"
+                 src="mesas-patio-mantel-dorado-480.jpg"
+                 srcset="mesas-patio-mantel-dorado-480.jpg 480w, mesas-patio-mantel-dorado-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Mesas del patio techado montadas con mantelería y camino dorado para un evento" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Ampliar foto: Detalle de la pileta"
+             data-full="pileta-detalle-turquesa-1440.jpg"
+             data-caption="Detalle de la pileta del quincho">
+          <picture>
+            <source type="image/webp" srcset="pileta-detalle-turquesa-480.webp 480w, pileta-detalle-turquesa-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1600/900" loading="lazy" decoding="async" width="1600" height="900"
+                 src="pileta-detalle-turquesa-480.jpg"
+                 srcset="pileta-detalle-turquesa-480.jpg 480w, pileta-detalle-turquesa-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Detalle de la pileta del quincho" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Pileta y mesas del patio techado montadas para un evento"
+             data-full="pileta-mesas-patio-evento-768.jpg"
+             data-caption="Pileta y mesas del patio techado montadas para un evento">
+          <picture>
+            <source type="image/webp" srcset="pileta-mesas-patio-evento-480.webp 480w, pileta-mesas-patio-evento-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:899/1599" loading="lazy" decoding="async" width="899" height="1599"
+                 src="pileta-mesas-patio-evento-480.jpg"
+                 srcset="pileta-mesas-patio-evento-480.jpg 480w, pileta-mesas-patio-evento-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Pileta y mesas del patio techado montadas para un evento" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Ampliar foto: Césped sintético junto a la pileta y el patio techado"
+             data-full="cesped-pileta-patio-1080.jpg"
+             data-caption="Sector de césped sintético junto a la pileta y el patio techado">
+          <picture>
+            <source type="image/webp" srcset="cesped-pileta-patio-480.webp 480w, cesped-pileta-patio-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1080/588" loading="lazy" decoding="async" width="1080" height="588"
+                 src="cesped-pileta-patio-480.jpg"
+                 srcset="cesped-pileta-patio-480.jpg 480w, cesped-pileta-patio-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Sector de césped sintético junto a la pileta y el patio techado" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Ampliar foto: Césped sintético junto al patio techado con asador"
+             data-full="cesped-asador-patio-1080.jpg"
+             data-caption="Césped sintético junto al patio techado con asador">
+          <picture>
+            <source type="image/webp" srcset="cesped-asador-patio-480.webp 480w, cesped-asador-patio-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1080/610" loading="lazy" decoding="async" width="1080" height="610"
+                 src="cesped-asador-patio-480.jpg"
+                 srcset="cesped-asador-patio-480.jpg 480w, cesped-asador-patio-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Césped sintético junto al patio techado con asador" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Mesa larga montada sobre el césped sintético, junto a la pileta"
+             data-full="mesa-larga-cesped-pileta-768.jpg"
+             data-caption="Mesa larga montada sobre el césped sintético, junto a la pileta">
+          <picture>
+            <source type="image/webp" srcset="mesa-larga-cesped-pileta-480.webp 480w, mesa-larga-cesped-pileta-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1051/1416" loading="lazy" decoding="async" width="1051" height="1416"
+                 src="mesa-larga-cesped-pileta-480.jpg"
+                 srcset="mesa-larga-cesped-pileta-480.jpg 480w, mesa-larga-cesped-pileta-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Mesa larga montada sobre el césped sintético, junto a la pileta" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Mesa montada con vajilla y decoración para un evento"
+             data-full="salon-interior-mesa-montada-768.jpg"
+             data-caption="Mesa montada con vajilla y decoración para un evento en el quincho">
+          <picture>
+            <source type="image/webp" srcset="salon-interior-mesa-montada-480.webp 480w, salon-interior-mesa-montada-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:960/1280" loading="lazy" decoding="async" width="960" height="1280"
+                 src="salon-interior-mesa-montada-480.jpg"
+                 srcset="salon-interior-mesa-montada-480.jpg 480w, salon-interior-mesa-montada-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Mesa montada con vajilla y decoración para un evento en el quincho" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Mesa dulce decorada para un evento"
+             data-full="salon-interior-mesa-dulce-768.jpg"
+             data-caption="Mesa dulce decorada para un evento en el quincho">
+          <picture>
+            <source type="image/webp" srcset="salon-interior-mesa-dulce-480.webp 480w, salon-interior-mesa-dulce-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:960/1280" loading="lazy" decoding="async" width="960" height="1280"
+                 src="salon-interior-mesa-dulce-480.jpg"
+                 srcset="salon-interior-mesa-dulce-480.jpg 480w, salon-interior-mesa-dulce-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Mesa dulce decorada para un evento en el quincho" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Sector decorado con guirnalda de globos y fondo iluminado"
+             data-full="backdrop-luces-salon-1080.jpg"
+             data-caption="Sector decorado con guirnalda de globos y fondo iluminado para eventos">
+          <picture>
+            <source type="image/webp" srcset="backdrop-luces-salon-480.webp 480w, backdrop-luces-salon-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1200/1600" loading="lazy" decoding="async" width="1200" height="1600"
+                 src="backdrop-luces-salon-480.jpg"
+                 srcset="backdrop-luces-salon-480.jpg 480w, backdrop-luces-salon-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Sector decorado con guirnalda de globos y fondo iluminado para eventos" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Ampliar foto: Espacio del quincho decorado con guirnalda de globos"
+             data-full="salon-decorado-globos-1080.jpg"
+             data-caption="Espacio del quincho decorado con guirnalda de globos, previo a un evento">
+          <picture>
+            <source type="image/webp" srcset="salon-decorado-globos-480.webp 480w, salon-decorado-globos-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:1280/960" loading="lazy" decoding="async" width="1280" height="960"
+                 src="salon-decorado-globos-480.jpg"
+                 srcset="salon-decorado-globos-480.jpg 480w, salon-decorado-globos-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Espacio del quincho decorado con guirnalda de globos, previo a un evento" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+
+        <div class="gallery-item gallery-item--tall" tabindex="0" role="button" aria-label="Ampliar foto: Ambiente nocturno con luces de fiesta reflejadas en la pileta"
+             data-full="ambiente-nocturno-luces-pileta-768.jpg"
+             data-caption="Ambiente nocturno del quincho con luces de fiesta reflejadas en la pileta">
+          <picture>
+            <source type="image/webp" srcset="ambiente-nocturno-luces-pileta-480.webp 480w, ambiente-nocturno-luces-pileta-768.webp 768w" sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw" />
+            <img style="--ar:960/1280" loading="lazy" decoding="async" width="960" height="1280"
+                 src="ambiente-nocturno-luces-pileta-480.jpg"
+                 srcset="ambiente-nocturno-luces-pileta-480.jpg 480w, ambiente-nocturno-luces-pileta-768.jpg 768w"
+                 sizes="(min-width:960px) 25vw, (min-width:640px) 33vw, 50vw"
+                 alt="Ambiente nocturno del quincho con luces de fiesta reflejadas en la pileta" />
+          </picture>
+          <span class="gallery-item__zoom" aria-hidden="true"><svg><use href="#icon-zoom"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICIOS ===================== -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Servicios</span>
+        <h2>Capacidad y servicios adicionales</h2>
+      </div>
+
+      <div class="services-grid reveal-group">
+        <article class="service-card reveal">
+          <div class="service-card__icon"><svg><use href="#icon-users"/></svg></div>
+          <h3>Capacidad máxima para 60 personas</h3>
+          <p>Espacio amplio, preparado para eventos grandes.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-card__icon"><svg><use href="#icon-utensils"/></svg></div>
+          <h3>Servicio de catering</h3>
+          <p>Consultá por catering para comidas tipo lunch en tu evento.</p>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-card__icon"><svg><use href="#icon-clock"/></svg></div>
+          <h3>Extensión de horas</h3>
+          <p>Consultá por la posibilidad de extender el horario, en caso de estar disponible.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INFORMACIÓN DEL ALQUILER ===================== -->
+  <section class="section" id="informacion" style="background:var(--surface-2)">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Información del alquiler</span>
+        <h2>Todo lo que necesitás saber</h2>
+      </div>
+
+      <div class="info-layout">
+        <div class="reveal">
+          <div class="info-block">
+            <h3><svg><use href="#icon-clock"/></svg> Duración y horarios</h3>
+            <ul class="check-list">
+              <li><svg><use href="#icon-check"/></svg> 6 horas de duración del alquiler.</li>
+              <li><svg><use href="#icon-check"/></svg> Horarios flexibles según disponibilidad.</li>
+              <li><svg><use href="#icon-check"/></svg> Franjas horarias: de 13:00 a 18:00 hs. o de 22:00 a 3:00 hs.</li>
+              <li><svg><use href="#icon-check"/></svg> El lugar se entrega una hora antes, para acomodar bebidas o decoración.</li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h3><svg><use href="#icon-check"/></svg> Qué incluye</h3>
+            <ul class="check-list">
+              <li><svg><use href="#icon-check"/></svg> Todos los servicios y comodidades del quincho.</li>
+              <li><svg><use href="#icon-check"/></svg> Mobiliario completo (mesas, sillas y manteles).</li>
+              <li><svg><use href="#icon-check"/></svg> Limpieza previa al evento.</li>
+              <li><svg><use href="#icon-check"/></svg> Mantenimiento de la pileta.</li>
+            </ul>
+          </div>
+
+          <div class="info-block">
+            <h3><svg><use href="#icon-info"/></svg> Condiciones</h3>
+            <ul class="check-list">
+              <li><svg><use href="#icon-check"/></svg> Se debe dejar una seña ($) para reservar el lugar. Consultá el monto por WhatsApp.</li>
+              <li><svg><use href="#icon-check"/></svg> El pago total del alquiler debe realizarse una semana antes del evento.</li>
+              <li><svg><use href="#icon-check"/></svg> Si se cancela, no se reintegra la seña.</li>
+              <li><svg><use href="#icon-check"/></svg> Se puede modificar la fecha con al menos dos semanas de anticipación.</li>
+              <li><svg><use href="#icon-check"/></svg> Para ver el lugar en persona, consultar cita previa.</li>
+              <li class="warn"><svg><use href="#icon-warn"/></svg> No está permitido tirar papel picado ni harinas.</li>
+            </ul>
+          </div>
+
+          <div class="info-block" style="margin-bottom:0">
+            <h3><svg><use href="#icon-card"/></svg> Medios de pago aceptados</h3>
+            <div class="pay-list">
+              <span class="pay-pill"><svg><use href="#icon-card"/></svg> Transferencia bancaria</span>
+              <span class="pay-pill"><svg><use href="#icon-cash"/></svg> Efectivo</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="reveal">
+          <div class="price-card">
+            <div class="price-card__eyebrow">Reserva y seña</div>
+            <div class="price-card__row">
+              <span class="price-card__label">Seña para reservar</span>
+              <span class="price-card__value">$</span>
+            </div>
+            <p class="price-card__note">El monto de la seña y el valor total del alquiler se informan por WhatsApp al consultar. El pago total se realiza una semana antes del evento.</p>
+            <a class="btn btn--accent btn--block" href="https://wa.me/5493813306964?text=Hola!%20Quiero%20consultar%20el%20valor%20del%20alquiler%20del%20quincho." target="_blank" rel="noopener">
+              <svg><use href="#icon-whatsapp"/></svg> Consultar valor y disponibilidad
+            </a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== UBICACIÓN ===================== -->
+  <section class="section" id="ubicacion">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ubicación</span>
+        <h2>Cómo llegar</h2>
+      </div>
+
+      <div class="location-layout reveal">
+        <div class="map-card">
+          <iframe
+            src="https://www.google.com/maps?q=Calle%2015%20N%C2%B0%20539%2C%20Villa%20Mariano%20Moreno&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación de Lela Eventos en el mapa"
+            aria-label="Mapa con la ubicación de Lela Eventos"
+          ></iframe>
+        </div>
+
+        <div class="location-details">
+          <div class="location-details__addr">
+            <svg><use href="#icon-pin"/></svg>
+            <span>Calle 15 N° 539, Villa Mariano Moreno</span>
+          </div>
+          <p class="mt-0">Para ver el quincho en persona antes de reservar, coordiná una visita por WhatsApp con cita previa.</p>
+          <a class="btn btn--outline" href="https://www.google.com/maps/search/?api=1&query=Calle%2015%20N%C2%B0%20539%2C%20Villa%20Mariano%20Moreno" target="_blank" rel="noopener">
+            <svg><use href="#icon-directions"/></svg> Cómo llegar en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section class="section" id="contacto" style="background:var(--surface-2)">
+    <div class="container">
+      <div class="contact-cta reveal">
+        <span class="eyebrow" style="color:var(--accent)">Reservas y consultas</span>
+        <h2>Tu próximo evento empieza con un mensaje</h2>
+        <p>Las reservas se realizan por fechas específicas. Todas las consultas se gestionan por WhatsApp, para una atención rápida y personalizada.</p>
+        <div class="contact-cta__actions">
+          <a class="btn btn--accent" href="https://wa.me/5493813306964?text=Hola!%20Quiero%20consultar%20disponibilidad%20para%20alquilar%20el%20quincho." target="_blank" rel="noopener">
+            <svg><use href="#icon-whatsapp"/></svg> Consultar por WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="https://instagram.com/quinchojapones" target="_blank" rel="noopener">
+            <svg><use href="#icon-instagram"/></svg> Seguinos @quinchojapones
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <span class="footer-brand">Lela Eventos</span>
+      <span>Calle 15 N° 539, Villa Mariano Moreno</span>
+      <a href="https://wa.me/5493813306964" target="_blank" rel="noopener">+54 9 381 330-6964 (WhatsApp)</a>
+      <a href="https://instagram.com/quinchojapones" target="_blank" rel="noopener">@quinchojapones (Instagram)</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> Lela Eventos. Todos los derechos reservados.</span>
+      <span>Consultas y reservas por WhatsApp</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== FAB WHATSAPP (mobile) ===================== -->
+<a class="fab-wa" href="https://wa.me/5493813306964?text=Hola!%20Quiero%20consultar%20disponibilidad%20para%20alquilar%20el%20quincho." target="_blank" rel="noopener" aria-label="Consultar por WhatsApp">
+  <svg><use href="#icon-whatsapp"/></svg>
+</a>
+
+<!-- ===================== BOTTOM APP NAV (mobile) ===================== -->
+<nav class="bottom-nav" aria-label="Navegación inferior">
+  <a href="#inicio" data-nav-link><svg><use href="#icon-home"/></svg>Inicio</a>
+  <a href="#galeria" data-nav-link><svg><use href="#icon-gallery"/></svg>Galería</a>
+  <a href="#informacion" data-nav-link><svg><use href="#icon-info"/></svg>Info</a>
+  <a href="#contacto" data-nav-link><svg><use href="#icon-whatsapp"/></svg>Contacto</a>
+</nav>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Visor de fotos del quincho">
+  <span class="lightbox__counter">1 / 7</span>
+  <button type="button" class="lightbox__close" aria-label="Cerrar visor de fotos"><svg width="20" height="20"><use href="#icon-close"/></svg></button>
+  <button type="button" class="lightbox__prev" aria-label="Foto anterior"><svg width="22" height="22"><use href="#icon-chevron-left"/></svg></button>
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" src="" alt="" />
+    <figcaption class="lightbox__caption"></figcaption>
+  </figure>
+  <button type="button" class="lightbox__next" aria-label="Foto siguiente"><svg width="22" height="22"><use href="#icon-chevron-right"/></svg></button>
+</div>
+
+<script src="main.js" defer></script>
 </body>
 </html>

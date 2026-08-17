@@ -1,0 +1,20 @@
+{
+  "name": "Lela Eventos",
+  "short_name": "Lela Eventos",
+  "description": "Alquiler de quincho para eventos: pileta, patio techado, asador y capacidad máxima para 60 personas.",
+  "start_url": "./",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAF5EC",
+  "theme_color": "#2E3820",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "categories": ["business", "lifestyle", "travel"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
